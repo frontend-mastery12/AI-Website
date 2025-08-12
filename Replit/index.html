@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberGuard AI - Advanced Cloud Security Platform</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --neon-blue: #00f5ff;
+            --neon-purple: #bf00ff;
+            --dark-bg: #0a0a0f;
+            --darker-bg: #050508;
+            --card-bg: rgba(15, 15, 25, 0.8);
+            --text-primary: #ffffff;
+            --text-secondary: #b8b8b8;
+            --border-glow: rgba(0, 245, 255, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                        var(--dark-bg);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-glow);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-blue);
+        }
+
+        .cta-button {
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-gradient);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 6rem 2rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn-primary {
+            padding: 1rem 2rem;
+            background: var(--primary-gradient);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid var(--neon-blue);
+            border-radius: 50px;
+            color: var(--neon-blue);
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary:hover {
+            background: var(--neon-blue);
+            color: var(--dark-bg);
+            transform: translateY(-3px);
+        }
+
+        .hero-visual {
+            width: 100%;
+            height: 300px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid var(--border-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.2), transparent);
+            animation: scan 3s infinite;
+        }
+
+        @keyframes scan {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .hero-visual-content {
+            text-align: center;
+            z-index: 1;
+        }
+
+        /* Features Section */
+        .features {
+            background: var(--darker-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-glow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 245, 255, 0.2);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary-gradient);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+        }
+
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .pricing-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-glow);
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card.featured {
+            border: 2px solid var(--neon-purple);
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .pricing-card.featured:hover {
+            transform: translateY(-10px) scale(1.07);
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .plan-price {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .plan-features li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+        }
+
+        .plan-features li:before {
+            content: '✓';
+            color: var(--neon-blue);
+            margin-right: 0.5rem;
+        }
+
+        /* Dashboard Section */
+        .dashboard {
+            background: var(--darker-bg);
+        }
+
+        .dashboard-preview {
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid var(--border-glow);
+            padding: 2rem;
+            margin-top: 2rem;
+            min-height: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-glow);
+        }
+
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(0, 245, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-glow);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--neon-blue);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .dashboard-chart {
+            height: 200px;
+            background: rgba(191, 0, 255, 0.1);
+            border-radius: 10px;
+            border: 1px solid var(--neon-purple);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chart-animation {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 40%, rgba(0, 245, 255, 0.2) 50%, transparent 60%);
+            animation: chartFlow 2s infinite;
+        }
+
+        @keyframes chartFlow {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--dark-bg);
+                flex-direction: column;
+                padding: 1rem;
+                border-top: 1px solid var(--border-glow);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-nav-toggle {
+                display: block;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            section {
+                padding: 4rem 1rem 2rem;
+            }
+
+            .features-grid, .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .dashboard-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">CyberGuard AI</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#dashboard">Dashboard</a></li>
+            </ul>
+            <a href="#" class="cta-button">Get Started</a>
+            <button class="mobile-nav-toggle" id="mobileToggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <h1 class="fade-in">Next-Gen AI Cloud Security</h1>
+            <p class="fade-in">Protect your digital infrastructure with advanced AI-powered threat detection, real-time monitoring, and autonomous response systems.</p>
+            <div class="hero-buttons fade-in">
+                <a href="#" class="btn-primary">Start Free Trial</a>
+                <a href="#" class="btn-secondary">Watch Demo</a>
+            </div>
+            <div class="hero-visual scale-in">
+                <div class="hero-visual-content">
+                    <h3>🛡️ AI Security Dashboard</h3>
+                    <p>Real-time threat monitoring and protection</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title fade-in">Advanced Security Features</h2>
+            <div class="features-grid">
+                <div class="feature-card slide-in-left">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Threat Detection</h3>
+                    <p>Machine learning algorithms continuously analyze patterns to identify and neutralize emerging threats before they impact your systems.</p>
+                </div>
+                <div class="feature-card slide-in-left">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Real-time Monitoring</h3>
+                    <p>24/7 continuous monitoring of your cloud infrastructure with instant alerts and automated response to security incidents.</p>
+                </div>
+                <div class="feature-card slide-in-left">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Zero-Trust Architecture</h3>
+                    <p>Comprehensive security model that verifies every access request, ensuring maximum protection for your sensitive data.</p>
+                </div>
+                <div class="feature-card slide-in-right">
+                    <div class="feature-icon">📊</div>
+                    <h3>Advanced Analytics</h3>
+                    <p>Deep insights into your security posture with detailed reports, compliance tracking, and predictive risk assessment.</p>
+                </div>
+                <div class="feature-card slide-in-right">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Automated Response</h3>
+                    <p>Intelligent automation that responds to threats instantly, isolating compromised systems and preventing lateral movement.</p>
+                </div>
+                <div class="feature-card slide-in-right">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Multi-Cloud Support</h3>
+                    <p>Seamless protection across AWS, Azure, GCP, and hybrid environments with unified security management.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title fade-in">Choose Your Security Plan</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card scale-in">
+                    <h3 class="plan-name">Starter</h3>
+                    <div class="plan-price">$99<span style="font-size: 1rem;">/month</span></div>
+                    <ul class="plan-features">
+                        <li>Up to 10 cloud instances</li>
+                        <li>Basic threat detection</li>
+                        <li>Email alerts</li>
+                        <li>24/7 monitoring</li>
+                        <li>Basic analytics</li>
+                    </ul>
+                    <a href="#" class="btn-primary">Get Started</a>
+                </div>
+                <div class="pricing-card featured scale-in">
+                    <h3 class="plan-name">Professional</h3>
+                    <div class="plan-price">$299<span style="font-size: 1rem;">/month</span></div>
+                    <ul class="plan-features">
+                        <li>Up to 100 cloud instances</li>
+                        <li>Advanced AI threat detection</li>
+                        <li>Real-time alerts</li>
+                        <li>Automated response</li>
+                        <li>Advanced analytics</li>
+                        <li>API access</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="#" class="btn-primary">Most Popular</a>
+                </div>
+                <div class="pricing-card scale-in">
+                    <h3 class="plan-name">Enterprise</h3>
+                    <div class="plan-price">$999<span style="font-size: 1rem;">/month</span></div>
+                    <ul class="plan-features">
+                        <li>Unlimited cloud instances</li>
+                        <li>Custom AI models</li>
+                        <li>Multi-cloud support</li>
+                        <li>Compliance reporting</li>
+                        <li>Dedicated support</li>
+                        <li>Custom integrations</li>
+                        <li>SLA guarantees</li>
+                    </ul>
+                    <a href="#" class="btn-primary">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Preview Section -->
+    <section id="dashboard" class="dashboard">
+        <div class="container">
+            <h2 class="section-title fade-in">Security Command Center</h2>
+            <div class="dashboard-preview scale-in">
+                <div class="dashboard-header">
+                    <h3>Live Security Dashboard</h3>
+                    <div style="color: var(--neon-blue);">🟢 All Systems Secure</div>
+                </div>
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-value">99.9%</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">0</div>
+                        <div class="stat-label">Active Threats</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">1,247</div>
+                        <div class="stat-label">Threats Blocked</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">156</div>
+                        <div class="stat-label">Protected Assets</div>
+                    </div>
+                </div>
+                <div class="dashboard-chart">
+                    <div class="chart-animation"></div>
+                    <div style="position: absolute; z-index: 1;">
+                        <h4>📈 Threat Detection Timeline</h4>
+                        <p>Real-time security metrics and analytics</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // GSAP ScrollTrigger Registration
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Mobile Navigation Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // GSAP Animations
+        gsap.set('.fade-in, .slide-in-left, .slide-in-right, .scale-in', {
+            opacity: 0
+        });
+
+        // Hero animations
+        gsap.timeline()
+            .to('.hero .fade-in', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                stagger: 0.2,
+                ease: "power3.out"
+            })
+            .to('.hero .scale-in', {
+                opacity: 1,
+                scale: 1,
+                duration: 0.8,
+                ease: "back.out(1.7)"
+            }, "-=0.5");
+
+        // Features section animations
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: '#features',
+                start: 'top 80%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none reverse'
+            }
+        })
+        .to('#features .fade-in', {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        })
+        .to('#features .slide-in-left', {
+            opacity: 1,
+            x: 0,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: "power3.out"
+        }, "-=0.4")
+        .to('#features .slide-in-right', {
+            opacity: 1,
+            x: 0,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: "power3.out"
+        }, "-=0.4");
+
+        // Pricing section animations
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: '#pricing',
+                start: 'top 80%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none reverse'
+            }
+        })
+        .to('#pricing .fade-in', {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        })
+        .to('#pricing .scale-in', {
+            opacity: 1,
+            scale: 1,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: "back.out(1.7)"
+        }, "-=0.4");
+
+        // Dashboard section animations
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: '#dashboard',
+                start: 'top 80%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none reverse'
+            }
+        })
+        .to('#dashboard .fade-in', {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        })
+        .to('#dashboard .scale-in', {
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            ease: "back.out(1.7)"
+        }, "-=0.4");
+
+        // Parallax effect for background animation
+        gsap.to('.bg-animation', {
+            yPercent: -50,
+            ease: "none",
+            scrollTrigger: {
+                trigger: 'body',
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: true
+            }
+        });
+
+        // Feature cards hover animations
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                gsap.to(card, {
+                    scale: 1.05,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    scale: 1,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+        });
+
+        // Pricing cards hover animations
+        document.querySelectorAll('.pricing-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                gsap.to(card, {
+                    y: -10,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    y: 0,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+        });
+
+        // Button hover animations
+        document.querySelectorAll('.btn-primary, .btn-secondary, .cta-button').forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                gsap.to(button, {
+                    scale: 1.05,
+                    duration: 0.2,
+                    ease: "power2.out"
+                });
+            });
+
+            button.addEventListener('mouseleave', () => {
+                gsap.to(button, {
+                    scale: 1,
+                    duration: 0.2,
+                    ease: "power2.out"
+                });
+            });
+        });
+
+        // Dynamic stats animation
+        const animateCounters = () => {
+            document.querySelectorAll('.stat-value').forEach(counter => {
+                const target = parseInt(counter.textContent.replace(/[^\d]/g, ''));
+                if (target > 0) {
+                    gsap.from(counter, {
+                        textContent: 0,
+                        duration: 2,
+                        ease: "power1.out",
+                        snap: { textContent: 1 },
+                        scrollTrigger: {
+                            trigger: counter,
+                            start: 'top 80%',
+                            toggleActions: 'play none none reverse'
+                        }
+                    });
+                }
+            });
+        };
+
+        animateCounters();
+
+        // Navigation active state
+        const sections = document.querySelectorAll('section');
+        const navLinksArray = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinksArray.forEach(link => {
+                link.style.color = 'var(--text-secondary)';
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.color = 'var(--neon-blue)';
+                }
+            });
+        });
+
+        // Performance optimization - reduce animations on low-end devices
+        if (window.innerWidth < 768 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            gsap.set('*', { animation: 'none' });
+        }
+    </script>
+</body>
+</html>

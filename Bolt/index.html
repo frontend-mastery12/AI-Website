@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield AI - Next-Gen Cloud Security</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%);
+            --secondary-gradient: linear-gradient(135deg, #1E1B4B 0%, #0F172A 100%);
+            --accent-purple: #8B5CF6;
+            --accent-blue: #3B82F6;
+            --bg-dark: #0F172A;
+            --bg-darker: #020617;
+            --text-primary: #F8FAFC;
+            --text-secondary: #CBD5E1;
+            --border-color: #334155;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-purple);
+        }
+
+        .cta-button {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-title .gradient-text {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .secondary-button {
+            background: transparent;
+            color: var(--text-primary);
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .secondary-button:hover {
+            border-color: var(--accent-purple);
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 8rem 0;
+            background: var(--bg-darker);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary-gradient);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-purple);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 8rem 0;
+            background: var(--bg-dark);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .pricing-card {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card.popular {
+            border-color: var(--accent-purple);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.popular::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
+        }
+
+        .pricing-card.popular:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        .plan-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-price {
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-period {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .plan-features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            color: var(--text-secondary);
+        }
+
+        .plan-features li::before {
+            content: '✓';
+            color: var(--accent-purple);
+            font-weight: bold;
+            margin-right: 0.75rem;
+        }
+
+        .plan-button {
+            width: 100%;
+            background: transparent;
+            color: var(--accent-purple);
+            border: 2px solid var(--accent-purple);
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .pricing-card.popular .plan-button {
+            background: var(--primary-gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        .plan-button:hover {
+            background: var(--accent-purple);
+            color: white;
+        }
+
+        .pricing-card.popular .plan-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Dashboard Preview */
+        .dashboard-preview {
+            padding: 8rem 0;
+            background: var(--bg-darker);
+        }
+
+        .dashboard-container {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dashboard-dot:nth-child(1) { background: #EF4444; }
+        .dashboard-dot:nth-child(2) { background: #F59E0B; }
+        .dashboard-dot:nth-child(3) { background: #10B981; }
+
+        .dashboard-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .dashboard-card {
+            background: rgba(30, 27, 75, 0.3);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .dashboard-card h4 {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .dashboard-value {
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .dashboard-chart {
+            height: 100px;
+            background: linear-gradient(45deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+            border-radius: 8px;
+            margin-top: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-chart::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: var(--primary-gradient);
+            opacity: 0.3;
+            border-radius: 0 0 8px 8px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.popular {
+                transform: none;
+            }
+
+            .pricing-card.popular:hover {
+                transform: translateY(-5px);
+            }
+
+            .dashboard-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        /* .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+        } */
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">CyberShield AI</div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#dashboard">Dashboard</a></li>
+            </ul>
+            <a href="#" class="cta-button">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1 class="hero-title fade-in">
+                Next-Gen <span class="gradient-text">AI Security</span><br>
+                for the Cloud Era
+            </h1>
+            <p class="hero-subtitle fade-in">
+                Protect your cloud infrastructure with advanced AI-driven threat detection, 
+                real-time monitoring, and autonomous response capabilities.
+            </p>
+            <div class="hero-buttons fade-in">
+                <a href="#" class="cta-button">Start Free Trial</a>
+                <a href="#" class="secondary-button">Watch Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title fade-in">Powerful Security Features</h2>
+            <p class="section-subtitle fade-in">
+                Advanced AI algorithms protect your cloud infrastructure 24/7 with real-time threat detection and automated response.
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature-card slide-in-left">
+                    <div class="feature-icon">🛡️</div>
+                    <h3 class="feature-title">AI-Powered Threat Detection</h3>
+                    <p class="feature-description">
+                        Machine learning algorithms analyze patterns and detect threats before they impact your infrastructure.
+                    </p>
+                </div>
+                
+                <div class="feature-card scale-in">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Real-time Monitoring</h3>
+                    <p class="feature-description">
+                        Continuous surveillance of your cloud environment with instant alerts and detailed security analytics.
+                    </p>
+                </div>
+                
+                <div class="feature-card slide-in-right">
+                    <div class="feature-icon">🤖</div>
+                    <h3 class="feature-title">Autonomous Response</h3>
+                    <p class="feature-description">
+                        Automated incident response that neutralizes threats without human intervention, minimizing downtime.
+                    </p>
+                </div>
+                
+                <div class="feature-card slide-in-left">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Advanced Analytics</h3>
+                    <p class="feature-description">
+                        Comprehensive security insights with predictive analytics and customizable reporting dashboards.
+                    </p>
+                </div>
+                
+                <div class="feature-card scale-in">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">Zero-Trust Architecture</h3>
+                    <p class="feature-description">
+                        Implementation of zero-trust security principles with identity verification and access controls.
+                    </p>
+                </div>
+                
+                <div class="feature-card slide-in-right">
+                    <div class="feature-icon">🌐</div>
+                    <h3 class="feature-title">Multi-Cloud Support</h3>
+                    <p class="feature-description">
+                        Seamless protection across AWS, Azure, GCP, and hybrid cloud environments with unified management.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title fade-in">Simple, Transparent Pricing</h2>
+            <p class="section-subtitle fade-in">
+                Choose the perfect plan for your organization's security needs. All plans include 24/7 support and a 30-day money-back guarantee.
+            </p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card slide-in-left">
+                    <h3 class="plan-name">Starter</h3>
+                    <div class="plan-price">$99</div>
+                    <div class="plan-period">per month</div>
+                    <ul class="plan-features">
+                        <li>Up to 10 cloud resources</li>
+                        <li>Basic threat detection</li>
+                        <li>Email support</li>
+                        <li>Weekly reports</li>
+                        <li>Standard SLA</li>
+                    </ul>
+                    <button class="plan-button">Get Started</button>
+                </div>
+                
+                <div class="pricing-card popular scale-in">
+                    <h3 class="plan-name">Professional</h3>
+                    <div class="plan-price">$299</div>
+                    <div class="plan-period">per month</div>
+                    <ul class="plan-features">
+                        <li>Up to 100 cloud resources</li>
+                        <li>Advanced AI detection</li>
+                        <li>24/7 priority support</li>
+                        <li>Real-time alerts</li>
+                        <li>Custom integrations</li>
+                        <li>Compliance reporting</li>
+                    </ul>
+                    <button class="plan-button">Start Free Trial</button>
+                </div>
+                
+                <div class="pricing-card slide-in-right">
+                    <h3 class="plan-name">Enterprise</h3>
+                    <div class="plan-price">$999</div>
+                    <div class="plan-period">per month</div>
+                    <ul class="plan-features">
+                        <li>Unlimited cloud resources</li>
+                        <li>AI + Human expertise</li>
+                        <li>Dedicated support team</li>
+                        <li>Custom deployment</li>
+                        <li>Advanced analytics</li>
+                        <li>SLA guarantees</li>
+                    </ul>
+                    <button class="plan-button">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Preview Section -->
+    <section class="dashboard-preview" id="dashboard">
+        <div class="container">
+            <h2 class="section-title fade-in">Intuitive Security Dashboard</h2>
+            <p class="section-subtitle fade-in">
+                Get complete visibility into your security posture with our comprehensive dashboard featuring real-time metrics and actionable insights.
+            </p>
+            
+            <div class="dashboard-container scale-in">
+                <div class="dashboard-header">
+                    <div class="dashboard-dot"></div>
+                    <div class="dashboard-dot"></div>
+                    <div class="dashboard-dot"></div>
+                </div>
+                
+                <div class="dashboard-content">
+                    <div class="dashboard-card">
+                        <h4>Threat Level</h4>
+                        <div class="dashboard-value">Low</div>
+                        <div class="dashboard-chart"></div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h4>Protected Resources</h4>
+                        <div class="dashboard-value">1,247</div>
+                        <div class="dashboard-chart"></div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h4>Threats Blocked</h4>
+                        <div class="dashboard-value">3,892</div>
+                        <div class="dashboard-chart"></div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h4>Uptime</h4>
+                        <div class="dashboard-value">99.9%</div>
+                        <div class="dashboard-chart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Initialize GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero animations
+        gsap.timeline()
+            .from('.hero .fade-in', {
+                duration: 1,
+                y: 50,
+                opacity: 0,
+                stagger: 0.2,
+                ease: "power3.out"
+            });
+
+        // // Features section animations
+        // gsap.from('.features .fade-in', {
+        //     scrollTrigger: {
+        //         trigger: '.features',
+        //         start: 'top 80%'
+        //     },
+        //     duration: 0.8,
+        //     y: 30,
+        //     opacity: 0,
+        //     stagger: 0.1
+        // });
+
+        // gsap.from('.features .slide-in-left', {
+        //     scrollTrigger: {
+        //         trigger: '.features-grid',
+        //         start: 'top 80%'
+        //     },
+        //     duration: 0.8,
+        //     x: -50,
+        //     opacity: 0,
+        //     stagger: 0.2
+        // });
+
+        // gsap.from('.features .slide-in-right', {
+        //     scrollTrigger: {
+        //         trigger: '.features-grid',
+        //         start: 'top 80%'
+        //     },
+        //     duration: 0.8,
+        //     x: 50,
+        //     opacity: 0,
+        //     stagger: 0.2
+        // });
+
+        // gsap.from('.features .scale-in', {
+        //     scrollTrigger: {
+        //         trigger: '.features-grid',
+        //         start: 'top 80%'
+        //     },
+        //     duration: 0.8,
+        //     scale: 0.8,
+        //     opacity: 0,
+        //     stagger: 0.2
+        // });
+
+        // Pricing section animations
+        gsap.from('.pricing .fade-in', {
+            scrollTrigger: {
+                trigger: '.pricing',
+                start: 'top 80%'
+            },
+            duration: 0.8,
+            y: 30,
+            opacity: 0
+        });
+
+        gsap.from('.pricing .slide-in-left', {
+            scrollTrigger: {
+                trigger: '.pricing-grid',
+                start: 'top 80%'
+            },
+            duration: 0.8,
+            x: -50,
+            opacity: 0
+        });
+
+        gsap.from('.pricing .slide-in-right', {
+            scrollTrigger: {
+                trigger: '.pricing-grid',
+                start: 'top 80%'
+            },
+            duration: 0.8,
+            x: 50,
+            opacity: 0
+        });
+
+        gsap.from('.pricing .scale-in', {
+            scrollTrigger: {
+                trigger: '.pricing-grid',
+                start: 'top 80%'
+            },
+            duration: 0.8,
+            scale: 0.8,
+            opacity: 0
+        });
+
+        // Dashboard section animations
+        gsap.from('.dashboard-preview .fade-in', {
+            scrollTrigger: {
+                trigger: '.dashboard-preview',
+                start: 'top 80%'
+            },
+            duration: 0.8,
+            y: 30,
+            opacity: 0,
+            stagger: 0.1
+        });
+
+        gsap.from('.dashboard-preview .scale-in', {
+            scrollTrigger: {
+                trigger: '.dashboard-container',
+                start: 'top 80%'
+            },
+            duration: 1,
+            scale: 0.9,
+            opacity: 0,
+            ease: "power3.out"
+        });
+
+        // Dashboard cards stagger animation
+        gsap.from('.dashboard-card', {
+            scrollTrigger: {
+                trigger: '.dashboard-content',
+                start: 'top 80%'
+            },
+            duration: 0.6,
+            y: 20,
+            opacity: 0,
+            stagger: 0.1
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add hover effects to feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                gsap.to(this, {
+                    duration: 0.3,
+                    scale: 1.02,
+                    ease: "power2.out"
+                });
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                gsap.to(this, {
+                    duration: 0.3,
+                    scale: 1,
+                    ease: "power2.out"
+                });
+            });
+        });
+
+        // Add hover effects to pricing cards
+        document.querySelectorAll('.pricing-card:not(.popular)').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                gsap.to(this, {
+                    duration: 0.3,
+                    scale: 1.02,
+                    ease: "power2.out"
+                });
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                gsap.to(this, {
+                    duration: 0.3,
+                    scale: 1,
+                    ease: "power2.out"
+                });
+            });
+        });
+
+        // Navbar background opacity on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            
+            if (scrolled > 100) {
+                navbar.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(15, 23, 42, 0.8)';
+            }
+        });
+    </script>
+</body>
+</html>

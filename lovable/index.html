@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureAI Cloud - Next-Generation AI Security</title>
+    <meta name="description" content="AI-powered cloud security that evolves with your threats">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* CSS Variables - Futuristic AI Security Design System */
+        :root {
+            /* Dark futuristic theme */
+            --background: hsl(222, 84%, 4.9%);
+            --foreground: hsl(210, 40%, 98%);
+            --card: hsl(222, 47%, 11%);
+            --card-foreground: hsl(210, 40%, 98%);
+            
+            /* Neon primary colors */
+            --primary: hsl(270, 100%, 70%);
+            --primary-foreground: hsl(210, 40%, 98%);
+            --primary-glow: hsl(270, 100%, 80%);
+            
+            /* Neon secondary colors */
+            --secondary: hsl(195, 100%, 70%);
+            --secondary-foreground: hsl(210, 40%, 98%);
+            --secondary-glow: hsl(195, 100%, 80%);
+            
+            --muted: hsl(217, 32%, 17%);
+            --muted-foreground: hsl(215, 20%, 65%);
+            --border: hsl(217, 32%, 17%);
+            
+            /* Neon gradients */
+            --gradient-primary: linear-gradient(135deg, hsl(270, 100%, 70%), hsl(195, 100%, 70%));
+            --gradient-hero: linear-gradient(135deg, hsl(270, 100%, 70%, 0.1), hsl(195, 100%, 70%, 0.1));
+            --gradient-card: linear-gradient(135deg, hsl(222, 47%, 11%, 0.8), hsl(217, 32%, 17%, 0.8));
+            --gradient-glow: radial-gradient(circle at center, hsl(270, 100%, 70%, 0.3), transparent 70%);
+            
+            /* Neon shadows */
+            --shadow-neon: 0 0 20px hsl(270, 100%, 70%, 0.5);
+            --shadow-neon-blue: 0 0 20px hsl(195, 100%, 70%, 0.5);
+            --shadow-card: 0 10px 30px hsl(222, 84%, 4.9%, 0.5);
+            
+            /* Animation properties */
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        /* Base styles */
+        body {
+            background-color: var(--background);
+            color: var(--foreground);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        /* Utility classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        .absolute {
+            position: absolute;
+        }
+
+        .grid {
+            display: grid;
+        }
+
+        .grid-cols-1 {
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+
+        .grid-cols-3 {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .gap-4 {
+            gap: 1rem;
+        }
+
+        .gap-6 {
+            gap: 1.5rem;
+        }
+
+        .gap-8 {
+            gap: 2rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .mb-6 {
+            margin-bottom: 1.5rem;
+        }
+
+        .mb-8 {
+            margin-bottom: 2rem;
+        }
+
+        .mb-12 {
+            margin-bottom: 3rem;
+        }
+
+        .mb-16 {
+            margin-bottom: 4rem;
+        }
+
+        .p-4 {
+            padding: 1rem;
+        }
+
+        .p-6 {
+            padding: 1.5rem;
+        }
+
+        .p-8 {
+            padding: 2rem;
+        }
+
+        .px-4 {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .px-6 {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        .px-8 {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .py-4 {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .py-6 {
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+
+        .py-20 {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .h-full {
+            height: 100%;
+        }
+
+        .min-h-screen {
+            min-height: 100vh;
+        }
+
+        .rounded-xl {
+            border-radius: 0.75rem;
+        }
+
+        .rounded-2xl {
+            border-radius: 1rem;
+        }
+
+        .border {
+            border-width: 1px;
+        }
+
+        .opacity-20 {
+            opacity: 0.2;
+        }
+
+        .opacity-30 {
+            opacity: 0.3;
+        }
+
+        .overflow-hidden {
+            overflow: hidden;
+        }
+
+        /* Scroll snap */
+        .scroll-snap-y {
+            scroll-snap-type: y mandatory;
+        }
+
+        .scroll-snap-start {
+            scroll-snap-align: start;
+        }
+
+        /* Grid patterns */
+        .grid-pattern {
+            background-image: 
+                linear-gradient(hsl(270, 100%, 70%, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, hsl(270, 100%, 70%, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Custom gradients */
+        .bg-gradient-primary {
+            background: var(--gradient-primary);
+        }
+
+        .bg-gradient-hero {
+            background: var(--gradient-hero);
+        }
+
+        .bg-gradient-card {
+            background: var(--gradient-card);
+        }
+
+        .bg-gradient-glow {
+            background: var(--gradient-glow);
+        }
+
+        /* Neon glow effects */
+        .neon-glow {
+            filter: drop-shadow(var(--shadow-neon));
+        }
+
+        .neon-glow-blue {
+            filter: drop-shadow(var(--shadow-neon-blue));
+        }
+
+        /* Animated gradient text */
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradient-flow 3s ease-in-out infinite;
+        }
+
+        /* Card with neon border */
+        .neon-card {
+            background: var(--gradient-card);
+            border: 1px solid hsl(270, 100%, 70%, 0.3);
+            backdrop-filter: blur(10px);
+            transition: var(--transition-smooth);
+        }
+
+        .neon-card:hover {
+            border-color: hsl(270, 100%, 70%, 0.6);
+            box-shadow: var(--shadow-neon);
+            transform: translateY(-2px);
+        }
+
+        /* Floating animation */
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Pulse glow animation */
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--primary-foreground);
+        }
+
+        .btn-primary:hover {
+            box-shadow: var(--shadow-neon);
+            transform: scale(1.05);
+        }
+
+        .btn-outline {
+            border: 1px solid hsl(270, 100%, 70%, 0.5);
+            background: transparent;
+            color: var(--foreground);
+        }
+
+        .btn-outline:hover {
+            background: hsl(270, 100%, 70%, 0.1);
+            border-color: var(--primary);
+        }
+
+        .btn-lg {
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+        }
+
+        /* Icons */
+        .icon {
+            width: 24px;
+            height: 24px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .icon-lg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .icon-xl {
+            width: 64px;
+            height: 64px;
+        }
+
+        /* Pricing cards */
+        .pricing-card {
+            position: relative;
+            background: var(--gradient-card);
+            border: 1px solid hsl(270, 100%, 70%, 0.3);
+            border-radius: 1rem;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: var(--transition-smooth);
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+            border-color: hsl(270, 100%, 70%, 0.6);
+            box-shadow: var(--shadow-neon);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary-foreground);
+            filter: drop-shadow(var(--shadow-neon));
+        }
+
+        /* Dashboard mockup */
+        .dashboard-stat {
+            background: var(--gradient-card);
+            border: 1px solid hsl(270, 100%, 70%, 0.2);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: var(--transition-smooth);
+        }
+
+        .dashboard-stat:hover {
+            border-color: hsl(270, 100%, 70%, 0.4);
+        }
+
+        .threat-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .threat-indicator.high {
+            background-color: #ef4444;
+            box-shadow: 0 0 10px #ef4444;
+        }
+
+        .threat-indicator.medium {
+            background-color: #f59e0b;
+            box-shadow: 0 0 10px #f59e0b;
+        }
+
+        .threat-indicator.low {
+            background-color: #10b981;
+            box-shadow: 0 0 10px #10b981;
+        }
+
+        /* GSAP Animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 2rem;
+            }
+
+            .grid-cols-md-2 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .grid-cols-md-3 {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .text-md-left {
+                text-align: left;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .grid-cols-lg-3 {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .grid-cols-lg-4 {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+        }
+
+        /* Keyframe animations */
+        @keyframes gradient-flow {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                filter: drop-shadow(0 0 5px hsl(270, 100%, 70%, 0.5));
+            }
+            50% {
+                filter: drop-shadow(0 0 20px hsl(270, 100%, 70%, 0.8));
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% {
+                transform: translate3d(0, 0, 0);
+            }
+            40%, 43% {
+                transform: translate3d(0, -30px, 0);
+            }
+            70% {
+                transform: translate3d(0, -15px, 0);
+            }
+            90% {
+                transform: translate3d(0, -4px, 0);
+            }
+        }
+
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+    </style>
+</head>
+<body class="scroll-snap-y">
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden scroll-snap-start">
+        <!-- Background with grid pattern -->
+        <div class="absolute inset-0 grid-pattern opacity-20"></div>
+        
+        <!-- Animated gradient background -->
+        <div class="absolute inset-0 bg-gradient-hero"></div>
+        
+        <!-- Floating orbs -->
+        <div class="absolute" style="top: 5rem; left: 5rem; width: 8rem; height: 8rem;">
+            <div class="bg-gradient-glow rounded-full w-full h-full blur-xl float opacity-30"></div>
+        </div>
+        <div class="absolute" style="bottom: 5rem; right: 5rem; width: 12rem; height: 12rem;">
+            <div class="bg-gradient-glow rounded-full w-full h-full blur-xl float opacity-20" style="animation-delay: 2s;"></div>
+        </div>
+        <div class="absolute" style="top: 10rem; right: 10rem; width: 6rem; height: 6rem;">
+            <div class="bg-gradient-glow rounded-full w-full h-full blur-xl float opacity-40" style="animation-delay: 4s;"></div>
+        </div>
+        
+        <div class="relative z-10 text-center container fade-in">
+            <!-- Logo/Icon -->
+            <div class="flex justify-center mb-8">
+                <div class="relative">
+                    <svg class="icon-xl neon-glow pulse-glow" style="color: var(--primary);" viewBox="0 0 24 24">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    <svg class="icon absolute" style="top: -0.5rem; right: -0.5rem; color: var(--secondary);" viewBox="0 0 24 24">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Main heading -->
+            <h1 class="gradient-text mb-6" style="font-size: clamp(3rem, 8vw, 6rem); font-weight: bold;">
+                SecureAI Cloud
+            </h1>
+            
+            <!-- Subheading -->
+            <p class="mb-4" style="font-size: clamp(1.25rem, 4vw, 2rem); color: var(--muted-foreground); max-width: 48rem; margin-left: auto; margin-right: auto;">
+                Next-generation AI-powered cloud security that evolves with your threats
+            </p>
+            
+            <!-- Description -->
+            <p class="mb-12" style="font-size: 1.125rem; color: var(--muted-foreground); max-width: 32rem; margin-left: auto; margin-right: auto;">
+                Protect your infrastructure with intelligent threat detection, real-time monitoring, 
+                and autonomous response systems powered by advanced machine learning.
+            </p>
+            
+            <!-- CTA buttons -->
+            <div class="flex flex-col gap-4 justify-center items-center mb-12" style="gap: 1rem;">
+                <a href="#pricing" class="btn btn-primary btn-lg neon-glow">Start Free Trial</a>
+                <a href="#dashboard" class="btn btn-outline btn-lg">Watch Demo</a>
+            </div>
+            
+            <!-- Features preview -->
+            <div class="grid grid-cols-1 grid-cols-md-3 gap-6" style="max-width: 64rem; margin-left: auto; margin-right: auto;">
+                <div class="neon-card p-6 rounded-xl text-center scale-in">
+                    <svg class="icon-lg mx-auto mb-4 neon-glow" style="color: var(--primary);" viewBox="0 0 24 24">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    <h3 class="mb-2" style="font-size: 1.125rem; font-weight: 600;">Real-time Monitoring</h3>
+                    <p style="font-size: 0.875rem; color: var(--muted-foreground);">24/7 AI surveillance of your cloud infrastructure</p>
+                </div>
+                
+                <div class="neon-card p-6 rounded-xl text-center scale-in">
+                    <svg class="icon-lg mx-auto mb-4 neon-glow-blue" style="color: var(--secondary);" viewBox="0 0 24 24">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                    </svg>
+                    <h3 class="mb-2" style="font-size: 1.125rem; font-weight: 600;">Instant Response</h3>
+                    <p style="font-size: 0.875rem; color: var(--muted-foreground);">Automated threat neutralization in milliseconds</p>
+                </div>
+                
+                <div class="neon-card p-6 rounded-xl text-center scale-in">
+                    <svg class="icon-lg mx-auto mb-4 neon-glow" style="color: var(--primary);" viewBox="0 0 24 24">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    <h3 class="mb-2" style="font-size: 1.125rem; font-weight: 600;">Adaptive Defense</h3>
+                    <p style="font-size: 0.875rem; color: var(--muted-foreground);">AI learns and evolves with emerging threats</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bounce" style="bottom: 2rem; left: 50%; transform: translateX(-50%);">
+            <div style="width: 1.5rem; height: 2.5rem; border: 2px solid var(--primary); border-radius: 2rem; display: flex; justify-content: center;">
+                <div style="width: 0.25rem; height: 0.75rem; background: var(--primary); border-radius: 2rem; margin-top: 0.5rem; animation: pulse 2s infinite;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="relative min-h-screen py-20 scroll-snap-start overflow-hidden">
+        <!-- Background elements -->
+        <div class="absolute inset-0 grid-pattern opacity-20"></div>
+        <div class="absolute" style="top: 10rem; left: 2.5rem; width: 16rem; height: 16rem;">
+            <div class="bg-gradient-glow rounded-full w-full h-full blur-3xl opacity-20"></div>
+        </div>
+        <div class="absolute" style="bottom: 5rem; right: 2.5rem; width: 24rem; height: 24rem;">
+            <div class="bg-gradient-glow rounded-full w-full h-full blur-3xl opacity-15"></div>
+        </div>
+        
+        <div class="relative z-10 container">
+            <!-- Section header -->
+            <div class="text-center mb-16 fade-in">
+                <h2 class="gradient-text mb-6" style="font-size: clamp(3rem, 6vw, 4rem); font-weight: bold;">
+                    Next-Gen Security Features
+                </h2>
+                <p style="font-size: 1.25rem; color: var(--muted-foreground); max-width: 48rem; margin-left: auto; margin-right: auto;">
+                    Revolutionary AI-driven security capabilities that adapt and evolve with your business needs
+                </p>
+            </div>
+            
+            <!-- Features grid -->
+            <div class="grid grid-cols-1 grid-cols-md-2 grid-cols-lg-3 gap-8">
+                <div class="neon-card p-8 rounded-2xl scale-in group" style="transition: var(--transition-smooth);">
+                    <div class="relative mb-6">
+                        <div class="neon-glow" style="width: 4rem; height: 4rem; background: linear-gradient(135deg, #a855f7, #ec4899); border-radius: 1rem; padding: 1rem; transition: transform 0.3s;">
+                            <svg class="icon text-white" viewBox="0 0 24 24">
+                                <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.12-8.72 3 3 0 0 1 5.58-2.5A2.5 2.5 0 0 1 9.5 2z"/>
+                                <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .12-8.72 3 3 0 0 0-5.58-2.5A2.5 2.5 0 0 0 14.5 2z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="mb-4" style="font-size: 1.5rem; font-weight: bold; color: var(--foreground);">AI-Powered Detection</h3>
+                    <p style="color: var(--muted-foreground); line-height: 1.6;">Advanced machine learning algorithms that identify and predict threats before they strike.</p>
+                </div>
+
+                <div class="neon-card p-8 rounded-2xl scale-in group" style="transition: var(--transition-smooth);">
+                    <div class="relative mb-6">
+                        <div class="neon-glow-blue" style="width: 4rem; height: 4rem; background: linear-gradient(135deg, #3b82f6, #06b6d4); border-radius: 1rem; padding: 1rem;">
+                            <svg class="icon text-white" viewBox="0 0 24 24">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="mb-4" style="font-size: 1.5rem; font-weight: bold; color: var(--foreground);">Lightning Fast Response</h3>
+                    <p style="color: var(--muted-foreground); line-height: 1.6;">Automated incident response with sub-second reaction times to neutralize threats.</p>
+                </div>
+
+                <div class="neon-card p-8 rounded-2xl scale-in group" style="transition: var(--transition-smooth);">
+                    <div class="relative mb-6">
+                        <div class="neon-glow" style="width: 4rem; height: 4rem; background: linear-gradient(135deg, #8b5cf6, #3b82f6); border-radius: 1rem; padding: 1rem;">
+                            <svg class="icon text-white" viewBox="0 0 24 24">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="mb-4" style="font-size: 1.5rem; font-weight: bold; color: var(--foreground);">Zero-Trust Architecture</h3>
+                    <p style="color: var(--muted-foreground); line-height: 1.6;">Comprehensive security model that verifies every access request across your infrastructure.</p>
+                </div>
+
+                <div class="neon-card p-8 rounded-2xl scale-in group" style="transition: var(--transition-smooth);">
+                    <div class="relative mb-6">
+                        <div class="neon-glow" style="width: 4rem; height: 4rem; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 1rem; padding: 1rem;">
+                            <svg class="icon text-white" viewBox="0 0 24 24">
+                                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                                <path d="m7 11V7a5 5 0 0 1 10 0v4"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="mb-4" style="font-size: 1.5rem; font-weight: bold; color: var(--foreground);">End-to-End Encryption</h3>
+                    <p style="color: var(--muted-foreground); line-height: 1.6;">Military-grade encryption protecting your data at rest, in transit, and in processing.</p>
+                </div>
+
+                <div class="neon-card p-8 rounded-2xl scale-in group" style="transition: var(--transition-smooth);">
+                    <div class="relative mb-6">
+                        <div class="neon-glow-blue" style="width: 4rem; height: 4rem; background: linear-gradient(135deg, #06b6d4, #3b82f6); border-radius: 1rem; padding: 1rem;">
+                            <svg class="icon text-white" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="m4.93 4.93 4.24 4.24"/>
+                                <path d="m14.83 9.17 4.24-4.24"/>
+                                <path d="m14.83 14.83 4.24 4.24"/>
+                                <path d="m9.17 14.83-4.24 4.24"/>
+                                <circle cx="12" cy="12" r="4"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="mb-4" style="font-size: 1.5rem; font-weight: bold; color: var(--foreground);">Global Threat Intelligence</h3>
+                    <p style="color: var(--muted-foreground); line-height: 1.6;">Real-time threat data from millions of endpoints worldwide, constantly updated.</p>
+                </div>
+
+                <div class="neon-card p-8 rounded-2xl scale-in group" style="transition: var(--transition-smooth);">
+                    <div class="relative mb-6">
+                        <div class="neon-glow" style="width: 4rem; height: 4rem; background: linear-gradient(135deg, #3b82f6, #8b5cf6); border-radius: 1rem; padding: 1rem;">
+                            <svg class="icon text-white" viewBox="0 0 24 24">
+                                <path d="M3 3v18h18"/>
+                                <path d="m19 9-5 5-4-4-3 3"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="mb-4" style="font-size: 1.5rem; font-weight: bold; color: var(--foreground);">Advanced Analytics</h3>
+                    <p style="color: var(--muted-foreground); line-height: 1.6;">Deep insights into your security posture with predictive analytics and reporting.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="relative min-h-screen py-20 scroll-snap-start overflow-hidden">
+        <!-- Background elements -->
+        <div class="absolute inset-0 grid-pattern opacity-20"></div>
+        <div class="absolute" style="top: 5rem; right: 5rem; width: 20rem; height: 20rem;">
+            <div class="bg-gradient-glow rounded-full w-full h-full blur-3xl opacity-20"></div>
+        </div>
+        <div class="absolute" style="bottom: 10rem; left: 5rem; width: 16rem; height: 16rem;">
+            <div class="bg-gradient-glow rounded-full w-full h-full blur-3xl opacity-25"></div>
+        </div>
+        
+        <div class="relative z-10 container">
+            <!-- Section header -->
+            <div class="text-center mb-16 fade-in">
+                <h2 class="gradient-text mb-6" style="font-size: clamp(3rem, 6vw, 4rem); font-weight: bold;">
+                    Choose Your Protection Level
+                </h2>
+                <p style="font-size: 1.25rem; color: var(--muted-foreground); max-width: 48rem; margin-left: auto; margin-right: auto;">
+                    Scalable security solutions designed to grow with your business needs
+                </p>
+            </div>
+            
+            <!-- Pricing cards -->
+            <div class="grid grid-cols-1 grid-cols-lg-3 gap-8">
+                <!-- Starter Plan -->
+                <div class="pricing-card scale-in">
+                    <div class="text-center mb-8">
+                        <h3 class="mb-2" style="font-size: 1.5rem; font-weight: bold;">Starter</h3>
+                        <p class="mb-6" style="color: var(--muted-foreground);">Perfect for small teams and startups</p>
+                        
+                        <div class="mb-6">
+                            <span class="gradient-text" style="font-size: 3rem; font-weight: bold;">$99</span>
+                            <span style="color: var(--muted-foreground);">/month</span>
+                        </div>
+                        
+                        <button class="btn btn-outline w-full">Get Started</button>
+                    </div>
+                    
+                    <div style="space-y: 1rem;">
+                        <div class="flex items-start gap-3 mb-4">
+                            <div style="width: 1.25rem; height: 1.25rem; background: linear-gradient(135deg, #3b82f6, #06b6d4); border-radius: 50%; padding: 0.25rem; margin-top: 0.125rem; flex-shrink: 0;">
+                                <svg class="icon" style="width: 0.75rem; height: 0.75rem; color: white;" viewBox="0 0 24 24">
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                            </div>
+                            <span style="font-size: 0.875rem; color: var(--muted-foreground);">Up to 100 assets monitored</span>
+                        </div>
+                        <div class="flex items-start gap-3 mb-4">
+                            <div style="width: 1.25rem; height: 1.25rem; background: linear-gradient(135deg, #3b82f6, #06b6d4); border-radius: 50%; padding: 0.25rem; margin-top: 0.125rem; flex-shrink: 0;">
+                                <svg class="icon" style="width: 0.75rem; height: 0.75rem; color: white;" viewBox="0 0 24 24">
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                            </div>
+                            <span style="font-size: 0.875rem; color: var(--muted-foreground);">Basic threat detection</span>
+                        </div>
+                        <div class="flex items-start gap-3 mb-4">
+                            <div style="width: 1.25rem; height: 1.25rem; background: linear-gradient(135deg, #3b82f6, #06b6d4); border-radius: 50%; padding: 0.25rem; margin-top: 0.125rem; flex-shrink: 0;">
+                                <svg class="icon" style="width: 0.75rem; height: 0.75rem; color: white;" viewBox="0 0 24 24">
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                            </div>
+                            <span style="font-size: 0.875rem; color: var(--muted-foreground);">24/7 monitoring</span>
+                        </div>
+                        <div class="flex items-start gap-3 mb-4">
+                            <div style="width: 1.25rem; height: 1.25rem; background: linear-gradient(135deg, #3b82f6, #06b6d4); border-radius: 50%; padding: 0.25rem; margin-top: 0.125rem; flex-shrink: 0;">
+                                <svg class="icon" style="width: 0.75rem; height: 0.75rem; color: white;" viewBox="0 0 24 24">
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                            </div>
+                            <span style="font-size: 0.875rem; color: var(--muted-foreground);">Email support</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Professional Plan -->
+                <div class="pricing-card featured scale-in">
+                    <div class="pricing-badge">
+                        <svg class="icon" style="width: 1rem; height: 1rem; margin-right: 0.5rem;" viewBox="0 0 24 24">
+                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                        </svg>
+                        Most Popular
+                    </div>
+                    
+                    <div class="text-center mb-8">
+                        <h3 class="mb-2" style="font-size: 1.5rem; font-weight: bold;">Professional</h3>
+                        <p class="mb-6" style="color: var(--muted-foreground);">Advanced protection for growing businesses</p>
+                        
+                        <div class="mb-6">
+                            <span class="gradient-text" style="font-size: 3rem; font-weight: bold;">$299</span>
+                            <span style="color: var(--muted-foreground);">/month</span>
+                        </div>
+                        
+                        <button class="btn btn-primary w-full neon-glow">Start Free Trial</button>
+                    </div>
+                    
+                    <div style="space-y: 1rem;">
+                        <div class="flex items-start gap-3 mb-4">
+                            <div style="width: 1.25rem; height: 1.25rem; background: linear-gradient(135deg, #a855f7, #ec4899); border-radius: 50%; padding: 0.25rem; margin-top: 0.125rem; flex-shrink: 0;">
+                                <svg class="icon" style="width: 0.75rem; height: 0.75rem; color: white;" viewBox="0 0 24 24">
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                            </div>
+                            <span style="font-size: 0.875rem; color: var(--muted-foreground);">Up to 1,000 assets monitored</span>
+                        </div>
+                        <div class="flex items-start gap-3 mb-4">
+                            <div style="width: 1.25rem; height: 1.25rem; background: linear-gradient(135deg, #a855f7, #ec4899); border-radius: 50%; padding: 0.25rem; margin-top: 0.125rem; flex-shrink: 0;">
+                                <svg class="icon" style="width: 0.75rem; height: 0.75rem; color: white;" viewBox="0 0 24 24">
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                            </div>
+                            <span style="font-size: 0.875rem; color: var(--muted-foreground);">AI-powered threat detection</span>
+                        </div>
+                        <div class="flex items-start gap-3 mb-4">
+                            <div style="width: 1.25rem; height: 1.25rem; background: linear-gradient(135deg, #a855f7, #ec4899); border-radius: 50%; padding: 0.25rem; margin-top: 0.125rem; flex-shrink: 0;">
+                                <svg class="icon" style="width: 0.75rem; height: 0.75rem; color: white;" viewBox="0 0 24 24">
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                            </div>
+                            <span style="font-size: 0.875rem; color: var(--muted-foreground);">Real-time incident response</span>
+                        </div>
+                        <div class="flex items-start gap-3 mb-4">
+                            <div style="width: 1.25rem; height: 1.25rem; background: linear-gradient(135deg, #a855f7, #ec4899); border-radius: 50%; padding: 0.25rem; margin-top: 0.125rem; flex-shrink: 0;">
+                                <svg class="icon" style="width: 0.75rem; height: 0.75rem; color: white;" viewBox="0 0 24 24">
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                            </div>
+                            <span style="font-size: 0.875rem; color: var(--muted-foreground);">Priority support</span>
+                        </div>
+                        <div class="flex items-start gap-3 mb-4">
+                            <div style="width: 1.25rem; height: 1.25rem; background: linear-gradient(135deg, #a855f7, #ec4899); border-radius: 50%; padding: 0.25rem; margin-top: 0.125rem; flex-shrink: 0;">
+                                <svg class="icon" style="width: 0.75rem; height: 0.75rem; color: white;" viewBox="0 0 24 24">
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                            </div>
+                            <span style="font-size: 0.875rem; color: var(--muted-foreground);">Advanced analytics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="pricing-card scale-in">
+                    <div class="text-center mb-8">
+                        <h3 class="mb-2" style="font-size: 1.5rem; font-weight: bold;">Enterprise</h3>
+                        <p class="mb-6" style="color: var(--muted-foreground);">Complete security suite for large organizations</p>
+                        
+                        <div class="mb-6">
+                            <span class="gradient-text" style="font-size: 3rem; font-weight: bold;">$899</span>
+                            <span style="color: var(--muted-foreground);">/month</span>
+                        </div>
+                        
+                        <button class="btn btn-outline w-full">Get Started</button>
+                    </div>
+                    
+                    <div style="space-y: 1rem;">
+                        <div class="flex items-start gap-3 mb-4">
+                            <div style="width: 1.25rem; height: 1.25rem; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 50%; padding: 0.25rem; margin-top: 0.125rem; flex-shrink: 0;">
+                                <svg class="icon" style="width: 0.75rem; height: 0.75rem; color: white;" viewBox="0 0 24 24">
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                            </div>
+                            <span style="font-size: 0.875rem; color: var(--muted-foreground);">Unlimited assets monitored</span>
+                        </div>
+                        <div class="flex items-start gap-3 mb-4">
+                            <div style="width: 1.25rem; height: 1.25rem; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 50%; padding: 0.25rem; margin-top: 0.125rem; flex-shrink: 0;">
+                                <svg class="icon" style="width: 0.75rem; height: 0.75rem; color: white;" viewBox="0 0 24 24">
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                            </div>
+                            <span style="font-size: 0.875rem; color: var(--muted-foreground);">Advanced AI & ML algorithms</span>
+                        </div>
+                        <div class="flex items-start gap-3 mb-4">
+                            <div style="width: 1.25rem; height: 1.25rem; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 50%; padding: 0.25rem; margin-top: 0.125rem; flex-shrink: 0;">
+                                <svg class="icon" style="width: 0.75rem; height: 0.75rem; color: white;" viewBox="0 0 24 24">
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                            </div>
+                            <span style="font-size: 0.875rem; color: var(--muted-foreground);">Automated threat response</span>
+                        </div>
+                        <div class="flex items-start gap-3 mb-4">
+                            <div style="width: 1.25rem; height: 1.25rem; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 50%; padding: 0.25rem; margin-top: 0.125rem; flex-shrink: 0;">
+                                <svg class="icon" style="width: 0.75rem; height: 0.75rem; color: white;" viewBox="0 0 24 24">
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                            </div>
+                            <span style="font-size: 0.875rem; color: var(--muted-foreground);">Dedicated security team</span>
+                        </div>
+                        <div class="flex items-start gap-3 mb-4">
+                            <div style="width: 1.25rem; height: 1.25rem; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 50%; padding: 0.25rem; margin-top: 0.125rem; flex-shrink: 0;">
+                                <svg class="icon" style="width: 0.75rem; height: 0.75rem; color: white;" viewBox="0 0 24 24">
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                            </div>
+                            <span style="font-size: 0.875rem; color: var(--muted-foreground);">Custom dashboard</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="relative min-h-screen py-20 scroll-snap-start overflow-hidden">
+        <!-- Background elements -->
+        <div class="absolute inset-0 grid-pattern opacity-20"></div>
+        <div class="absolute" style="top: 2.5rem; left: 2.5rem; width: 24rem; height: 24rem;">
+            <div class="bg-gradient-glow rounded-full w-full h-full blur-3xl opacity-15"></div>
+        </div>
+        <div class="absolute" style="bottom: 2.5rem; right: 2.5rem; width: 20rem; height: 20rem;">
+            <div class="bg-gradient-glow rounded-full w-full h-full blur-3xl opacity-20"></div>
+        </div>
+        
+        <div class="relative z-10 container">
+            <!-- Section header -->
+            <div class="text-center mb-16 fade-in">
+                <h2 class="gradient-text mb-6" style="font-size: clamp(3rem, 6vw, 4rem); font-weight: bold;">
+                    Command Center Dashboard
+                </h2>
+                <p style="font-size: 1.25rem; color: var(--muted-foreground); max-width: 48rem; margin-left: auto; margin-right: auto;">
+                    Get complete visibility into your security posture with real-time insights and intelligent analytics
+                </p>
+            </div>
+            
+            <!-- Dashboard mockup -->
+            <div class="fade-in">
+                <div class="neon-card p-8 rounded-2xl relative overflow-hidden" style="max-width: 72rem; margin-left: auto; margin-right: auto;">
+                    <!-- Dashboard header -->
+                    <div class="flex items-center justify-between mb-8 pb-6" style="border-bottom: 1px solid hsl(270, 100%, 70%, 0.2);">
+                        <div>
+                            <h3 class="gradient-text mb-2" style="font-size: 1.5rem; font-weight: bold;">Security Overview</h3>
+                            <p style="color: var(--muted-foreground);">Real-time threat monitoring & analysis</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="flex items-center gap-2">
+                                <div class="threat-indicator low"></div>
+                                <span style="font-size: 0.875rem; color: var(--muted-foreground);">All Systems Secure</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Stats cards -->
+                    <div class="grid grid-cols-1 grid-cols-md-2 grid-cols-lg-4 gap-6 mb-8">
+                        <div class="dashboard-stat">
+                            <div class="flex items-center justify-between mb-4">
+                                <svg class="icon-lg neon-glow" style="color: #10b981;" viewBox="0 0 24 24">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                </svg>
+                                <span style="font-size: 1.5rem; font-weight: bold; color: #10b981;">99.9%</span>
+                            </div>
+                            <h4 class="mb-1" style="font-weight: 600;">Protection Rate</h4>
+                            <p style="font-size: 0.875rem; color: var(--muted-foreground);">Threats Blocked</p>
+                        </div>
+                        
+                        <div class="dashboard-stat">
+                            <div class="flex items-center justify-between mb-4">
+                                <svg class="icon-lg neon-glow-blue" style="color: #3b82f6;" viewBox="0 0 24 24">
+                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                                </svg>
+                                <span style="font-size: 1.5rem; font-weight: bold; color: #3b82f6;">1,247</span>
+                            </div>
+                            <h4 class="mb-1" style="font-weight: 600;">Active Monitors</h4>
+                            <p style="font-size: 0.875rem; color: var(--muted-foreground);">Endpoints Secured</p>
+                        </div>
+                        
+                        <div class="dashboard-stat">
+                            <div class="flex items-center justify-between mb-4">
+                                <svg class="icon-lg neon-glow" style="color: #f59e0b;" viewBox="0 0 24 24">
+                                    <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+                                    <path d="M12 9v4"/>
+                                    <path d="m12 17 .01 0"/>
+                                </svg>
+                                <span style="font-size: 1.5rem; font-weight: bold; color: #f59e0b;">3</span>
+                            </div>
+                            <h4 class="mb-1" style="font-weight: 600;">Medium Alerts</h4>
+                            <p style="font-size: 0.875rem; color: var(--muted-foreground);">Require Attention</p>
+                        </div>
+                        
+                        <div class="dashboard-stat">
+                            <div class="flex items-center justify-between mb-4">
+                                <svg class="icon-lg neon-glow" style="color: #8b5cf6;" viewBox="0 0 24 24">
+                                    <path d="M3 3v18h18"/>
+                                    <path d="m19 9-5 5-4-4-3 3"/>
+                                </svg>
+                                <span style="font-size: 1.5rem; font-weight: bold; color: #8b5cf6;">+15%</span>
+                            </div>
+                            <h4 class="mb-1" style="font-weight: 600;">Security Score</h4>
+                            <p style="font-size: 0.875rem; color: var(--muted-foreground);">vs Last Month</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Main dashboard content -->
+                    <div class="grid grid-cols-1" style="grid-template-columns: 2fr 1fr; gap: 2rem;">
+                        <!-- Threat map -->
+                        <div class="bg-gradient-card p-6 rounded-2xl" style="border: 1px solid hsl(270, 100%, 70%, 0.2);">
+                            <div class="flex items-center justify-between mb-6">
+                                <h4 style="font-size: 1.25rem; font-weight: bold;">Global Threat Map</h4>
+                                <svg class="icon neon-glow" style="color: var(--primary);" viewBox="0 0 24 24">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </div>
+                            
+                            <!-- Simulated map -->
+                            <div class="relative rounded-xl overflow-hidden" style="height: 16rem; background: linear-gradient(135deg, hsl(270, 100%, 70%, 0.1), hsl(195, 100%, 70%, 0.1));">
+                                <!-- Animated threat indicators -->
+                                <div class="absolute threat-indicator high" style="top: 3rem; left: 4rem;"></div>
+                                <div class="absolute threat-indicator medium" style="top: 5rem; right: 5rem;"></div>
+                                <div class="absolute threat-indicator high" style="bottom: 4rem; left: 6rem;"></div>
+                                <div class="absolute threat-indicator medium" style="bottom: 5rem; right: 8rem;"></div>
+                                <div class="absolute threat-indicator high" style="top: 8rem; left: 50%;"></div>
+                                
+                                <!-- Pulse rings -->
+                                <div class="absolute" style="top: 2.5rem; left: 3.5rem; width: 2rem; height: 2rem; border: 2px solid #ef4444; border-radius: 50%; animation: pulse 2s infinite; opacity: 0.5;"></div>
+                                <div class="absolute" style="bottom: 3.5rem; left: 5.5rem; width: 2.5rem; height: 2.5rem; border: 2px solid #ef4444; border-radius: 50%; animation: pulse 2s infinite; animation-delay: 1s; opacity: 0.3;"></div>
+                                
+                                <div class="absolute" style="bottom: 1rem; left: 1rem; font-size: 0.75rem; color: var(--muted-foreground);">
+                                    Real-time threat visualization
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Recent alerts -->
+                        <div class="bg-gradient-card p-6 rounded-2xl" style="border: 1px solid hsl(270, 100%, 70%, 0.2);">
+                            <h4 class="mb-6" style="font-size: 1.25rem; font-weight: bold;">Recent Alerts</h4>
+                            
+                            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                                <div class="p-4 rounded-xl" style="background: hsl(0, 84%, 60%, 0.1); border: 1px solid hsl(0, 84%, 60%, 0.2);">
+                                    <div class="flex items-start gap-3">
+                                        <svg class="icon" style="color: #ef4444; margin-top: 0.125rem;" viewBox="0 0 24 24">
+                                            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+                                            <path d="M12 9v4"/>
+                                            <path d="m12 17 .01 0"/>
+                                        </svg>
+                                        <div style="flex: 1;">
+                                            <p style="font-weight: 600; font-size: 0.875rem;">Suspicious Login Attempt</p>
+                                            <p style="font-size: 0.75rem; color: var(--muted-foreground);">IP: 192.168.1.xxx</p>
+                                            <p style="font-size: 0.75rem; color: var(--muted-foreground);">2 minutes ago</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="p-4 rounded-xl" style="background: hsl(45, 93%, 47%, 0.1); border: 1px solid hsl(45, 93%, 47%, 0.2);">
+                                    <div class="flex items-start gap-3">
+                                        <svg class="icon" style="color: #f59e0b; margin-top: 0.125rem;" viewBox="0 0 24 24">
+                                            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+                                            <path d="M12 9v4"/>
+                                            <path d="m12 17 .01 0"/>
+                                        </svg>
+                                        <div style="flex: 1;">
+                                            <p style="font-weight: 600; font-size: 0.875rem;">Unusual Data Transfer</p>
+                                            <p style="font-size: 0.75rem; color: var(--muted-foreground);">Server: web-prod-01</p>
+                                            <p style="font-size: 0.75rem; color: var(--muted-foreground);">15 minutes ago</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="p-4 rounded-xl" style="background: hsl(142, 76%, 36%, 0.1); border: 1px solid hsl(142, 76%, 36%, 0.2);">
+                                    <div class="flex items-start gap-3">
+                                        <svg class="icon" style="color: #10b981; margin-top: 0.125rem;" viewBox="0 0 24 24">
+                                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                                            <path d="m9 12 2 2 4-4"/>
+                                        </svg>
+                                        <div style="flex: 1;">
+                                            <p style="font-weight: 600; font-size: 0.875rem;">Threat Neutralized</p>
+                                            <p style="font-size: 0.75rem; color: var(--muted-foreground);">Malware blocked</p>
+                                            <p style="font-size: 0.75rem; color: var(--muted-foreground);">1 hour ago</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full py-3 px-4 rounded-xl text-sm font-semibold mt-6" style="border: 1px solid hsl(270, 100%, 70%, 0.5); background: transparent; color: var(--foreground); transition: var(--transition-smooth);">
+                                View All Alerts
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Register GSAP plugins
+        gsap.registerPlugin(ScrollTrigger);
+
+        // GSAP ScrollTrigger animations
+        gsap.utils.toArray('.fade-in').forEach((element) => {
+            gsap.fromTo(element, 
+                {
+                    opacity: 0,
+                    y: 30
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+
+        gsap.utils.toArray('.scale-in').forEach((element, index) => {
+            gsap.fromTo(element,
+                {
+                    opacity: 0,
+                    scale: 0.9
+                },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.6,
+                    ease: "back.out(1.7)",
+                    delay: index * 0.1,
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+
+        // Floating orbs parallax
+        gsap.utils.toArray('.float').forEach((element, index) => {
+            gsap.to(element, {
+                y: -20,
+                duration: 3 + index,
+                ease: "sine.inOut",
+                repeat: -1,
+                yoyo: true,
+                delay: index * 0.5
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add hover effects to cards
+        document.querySelectorAll('.neon-card, .pricing-card, .dashboard-stat').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                gsap.to(this, {
+                    scale: 1.02,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+
+            card.addEventListener('mouseleave', function() {
+                gsap.to(this, {
+                    scale: 1,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+        });
+
+        // Button hover animations
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                gsap.to(this, {
+                    scale: 1.05,
+                    duration: 0.2,
+                    ease: "power2.out"
+                });
+            });
+
+            btn.addEventListener('mouseleave', function() {
+                gsap.to(this, {
+                    scale: 1,
+                    duration: 0.2,
+                    ease: "power2.out"
+                });
+            });
+        });
+
+        // Gradient text animation enhancement
+        gsap.to('.gradient-text', {
+            backgroundPosition: '200% center',
+            duration: 3,
+            ease: "none",
+            repeat: -1,
+            yoyo: true
+        });
+
+        // Threat indicators pulsing animation
+        gsap.to('.threat-indicator', {
+            scale: 1.2,
+            duration: 1,
+            ease: "power2.inOut",
+            repeat: -1,
+            yoyo: true,
+            stagger: 0.3
+        });
+
+        // Loading animation for the entire page
+        gsap.fromTo('body', 
+            {
+                opacity: 0
+            },
+            {
+                opacity: 1,
+                duration: 1,
+                ease: "power2.out"
+            }
+        );
+
+        // Hero section special animations
+        gsap.timeline()
+            .fromTo('#hero h1', {
+                opacity: 0,
+                y: 50,
+                scale: 0.9
+            }, {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 1,
+                ease: "back.out(1.7)",
+                delay: 0.5
+            })
+            .fromTo('#hero p', {
+                opacity: 0,
+                y: 30
+            }, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                stagger: 0.2
+            }, "-=0.5")
+            .fromTo('#hero .btn', {
+                opacity: 0,
+                y: 30
+            }, {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power2.out",
+                stagger: 0.1
+            }, "-=0.3");
+    </script>
+</body>
+</html>
